@@ -1,0 +1,8 @@
+post http://127.0.0.1:5000/administrator/add_location
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDU0MzA3MiwianRpIjoiYTNjZDA5YTAtMzExMS00MmI1LTliYzQtZGNjNWE0Y2E3MmU5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzIwNTQzMDcyLCJjc3JmIjoiZTkxMzkxN2MtN2JhZC00ZTcyLWFkMTItMWM3NDZiMDY4OGU4IiwiZXhwIjoxNzIwNTQzOTcyfQ.YxR1QOfjuX5ST-1b4DPutPm8XHlK-jKAIh3INr8V3ow
+Content-Type: application/json
+
+{
+"name":"Dubai",
+"description":"A beachy location"
+}
