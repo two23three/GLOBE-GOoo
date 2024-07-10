@@ -26,3 +26,43 @@ class AddLocation(Resource):
         return {"message": "Location added successfully"}, 201
 
 administrator_api.add_resource(AddLocation, '/add_location')
+class DeleteLocation(Resource):
+    @jwt_required()
+    def delete(self, location_id):
+        user_id = get_jwt_identity()
+        user = User.query.get(user_id)
+        
+        if not user:
+            return {"message": "User not found"}, 404
+        
+        location = Location.query.get(location_id)
+        
+        if not location:
+            return {"message": "Location not found"}, 404
+        
+        db.session.delete(location)
+        db.session.commit()
+        return {"message": "Location has been deleted successfully"}, 200
+administrator_api.add_resource(DeleteLocation, '/delete_location/<int:location_id>')
+
+class UpdateLocation(Resource):
+    @jwt_required()
+    def put(self, location_id):
+        data = location_args.parse_args()
+        user_id = get_jwt_identity()
+        user = User.query.get(user_id)
+        
+        if not user:
+            return {"message": "User not found"}, 404
+        
+        location = Location.query.get(location_id)
+        
+        if not location:
+            return {"message": "Location not found"}, 404
+        
+        location.name = data["name"]
+        location.description = data["description"]
+        db.session.commit()
+        return {"message": "Location has updated successfully"}, 200
+
+administrator_api.add_resource(UpdateLocation, '/update_location/<int:location_id>')
