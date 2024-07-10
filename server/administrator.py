@@ -1,7 +1,7 @@
-from flask import Blueprint 
+from flask import Blueprint,request
 from flask_restful import Api,Resource, reqparse 
 from flask_jwt_extended import jwt_required, get_jwt_identity,JWTManager
-from models import db, Location, User
+from models import db, Location, User, Ticket
 
 administrator_bp = Blueprint('administrator_bp',__name__, url_prefix='/administrator')
 administrator_api = Api(administrator_bp)
@@ -9,6 +9,12 @@ administrator_api = Api(administrator_bp)
 location_args = reqparse.RequestParser()
 location_args.add_argument("name", type=str, help="Name of the location")
 location_args.add_argument("description", type=str, help="Description of the location")
+
+ticket_args = reqparse.RequestParser()
+ticket_args.add_argument("location_id", type=int, required=True, help="ID of the location")
+ticket_args.add_argument("price", type=float, required=True, help="Price of the ticket")
+ticket_args.add_argument("means", type=str, required=True, help="Means of travel")
+ticket_args.add_argument("seat_no", type=int, required=True, help="Seat number")
 
 class AddLocation(Resource):
     @jwt_required()
@@ -25,6 +31,13 @@ class AddLocation(Resource):
         db.session.commit()
         return {"message": "Location added successfully"}, 201
 
+class GetLocations(Resource):
+    @jwt_required()
+    def get(self):
+        locations = Location.query.all()
+        return [location.to_dict() for location in locations], 200
+
+administrator_api.add_resource(GetLocations, '/get_locations')
 administrator_api.add_resource(AddLocation, '/add_location')
 class DeleteLocation(Resource):
     @jwt_required()
@@ -66,3 +79,31 @@ class UpdateLocation(Resource):
         return {"message": "Location has updated successfully"}, 200
 
 administrator_api.add_resource(UpdateLocation, '/update_location/<int:location_id>')
+
+class AddTicket(Resource):
+    @jwt_required()
+    def post(self):
+        data = ticket_args.parse_args()
+        user_id = get_jwt_identity()
+        user = User.query.get(user_id)
+        
+        if not user:
+            return {"message": "User not found"}, 404
+        
+        location = Location.query.get(data["location_id"])
+        
+        if not location:
+            return {"message": "Location not found"}, 404
+        
+        ticket = Ticket(
+            user_id=user_id,
+            location_id=data["location_id"],
+            price=data["price"],
+            means=data["means"],
+            seat_no=data["seat_no"]
+        )
+        db.session.add(ticket)
+        db.session.commit()
+        return {"message": "Ticket posted successfully"}, 201
+
+administrator_api.add_resource(AddTicket, '/add_ticket')

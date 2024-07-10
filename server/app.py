@@ -5,6 +5,7 @@ from flask import Flask, request, make_response, jsonify
 from flask_restful import Api, Resource
 from auth import auth_bp,bcrypt, jwt
 from administrator import administrator_bp
+from traveler import traveler_bp
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get("DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
@@ -17,6 +18,7 @@ app.config['SECRET_KEY']= 'You will never walk Alone'
 app.json.compact = False
 app.register_blueprint(auth_bp)
 app.register_blueprint(administrator_bp)
+app.register_blueprint(traveler_bp)
 
 migrate = Migrate(app, db)
 

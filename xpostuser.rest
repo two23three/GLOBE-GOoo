@@ -1,8 +1,8 @@
-get http://127.0.0.1:5000/auth/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDU5ODY0MiwianRpIjoiY2I4MzBjYTctOGVjZS00OTVhLWExYjUtNTk0ZmM2NTdiNWUyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzIwNTk4NjQyLCJjc3JmIjoiYTQyMDg5YTYtNjNiMi00MjQyLWI4YWQtYzAyYzY4OTQ0NzAzIiwiZXhwIjoxNzIwNTk5NTQyfQ.6qRXOv80Yoz9mn5sjZIcl7JocYiDxXKE9qKiKJpDUy0
+post http://127.0.0.1:5000/auth/login
 Content-Type: application/json
 
 {
-"email":"test@email.com",
+"username":"Victor",
+"email":"VIctor@email.com",
 "password":"12345678"
 }

@@ -27,6 +27,12 @@ class Location(db.Model):
     tickets = db.relationship('Ticket', back_populates='location')
     reviews = db.relationship('Review', back_populates='location')
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description
+        }
    
 
 # Define the Ticket model
