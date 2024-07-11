@@ -146,3 +146,42 @@ class GetTicket(Resource):
             "means": ticket.means,
             "seat_no": ticket.seat_no
         }, 200
+class UpdateTicket(Resource):
+    @jwt_required()
+    def put(self, ticket_id):
+        ticket_args = reqparse.RequestParser()
+        ticket_args.add_argument("location_id", type=int, required=False, help="Location ID is required")
+        ticket_args.add_argument("price", type=float, required=False, help="Price is required")
+        ticket_args.add_argument("means", type=str, required=False, help="Means of transport is required")
+        ticket_args.add_argument("seat_no", type=str, required=False, help="Seat number is required")
+        
+        data = ticket_args.parse_args()
+        user_id = get_jwt_identity()
+        user = User.query.get(user_id)
+        
+        if not user:
+            return {"message": "User not found"}, 404
+        
+        ticket = Ticket.query.get(ticket_id)
+        
+        if not ticket:
+            return {"message": "Ticket not found"}, 404
+        
+        if data["location_id"]:
+            ticket.location_id = data["location_id"]
+        if data["price"]:
+            ticket.price = data["price"]
+        if data["means"]:
+            ticket.means = data["means"]
+        if data["seat_no"]:
+            ticket.seat_no = data["seat_no"]
+        
+        db.session.commit()
+        return {"message": "Ticket updated successfully"}, 200
+
+# Ticket Resources
+administrator_api.add_resource(AddTicket, '/add_ticket')
+administrator_api.add_resource(DeleteTicket, '/delete_ticket/<int:ticket_id>')
+administrator_api.add_resource(GetTicket, '/get_ticket/<int:ticket_id>')
+administrator_api.add_resource(UpdateTicket, '/update_ticket/<int:ticket_id>')
+
