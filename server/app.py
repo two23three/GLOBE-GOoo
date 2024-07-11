@@ -14,7 +14,8 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['SECRET_KEY']= 'You will never walk Alone'
-
+app.config['UPLOAD_FOLDER'] = 'uploads/'  
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
 app.json.compact = False
 app.register_blueprint(auth_bp)
 app.register_blueprint(administrator_bp)

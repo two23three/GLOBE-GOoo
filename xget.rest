@@ -1,5 +1,11 @@
-GET http://127.0.0.1:5000/traveler/tickets
+POST http://127.0.0.1:5000/traveler/post_review
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDY4OTQ3MCwianRpIjoiYjg2ZjM5YTgtYTg5Zi00NWM1LTlmYTktNjZjZmYyZmE4OTJkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzIwNjg5NDcwLCJjc3JmIjoiM2Q2NzI4YTEtNzc1Zi00YTU1LWJiYzgtODljZmYwODI5ZmExIiwiZXhwIjoxNzIwNjkwMzcwfQ.ZxDanWzZc8bXRfqOKTwx_gdIU0X42Qs3vIga4cSeGuA
 Content-Type: application/json
 
+{
+"location_id":1,
+"rating":5,
+"comment":"very beatuful"
+}
 
 

@@ -1,6 +1,8 @@
 from flask import Blueprint,request
 from flask_restful import Api,Resource, reqparse 
 from flask_jwt_extended import jwt_required, get_jwt_identity,JWTManager
+from werkzeug.utils import secure_filename
+import os
 from models import db, Location, User, Ticket
 
 administrator_bp = Blueprint('administrator_bp',__name__, url_prefix='/administrator')
@@ -16,17 +18,31 @@ ticket_args.add_argument("price", type=float, required=True, help="Price of the 
 ticket_args.add_argument("means", type=str, required=True, help="Means of travel")
 ticket_args.add_argument("seat_no", type=int, required=True, help="Seat number")
 
+UPLOAD_FOLDER = 'uploads/'  
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 class AddLocation(Resource):
     @jwt_required()
     def post(self):
         data = location_args.parse_args()
+        file = request.files.get('image')
         user_id = get_jwt_identity()
         user = User.query.get(user_id)
         
         if not user:
             return {"message": "User not found"}, 404
         
-        location = Location(name=data["name"], description=data["description"])
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file_path = os.path.join(UPLOAD_FOLDER, filename)
+            file.save(file_path)
+        else:
+            return {"message": "Invalid file type"}, 400
+        
+        location = Location(name=data["name"], description=data["description"], image_url=file_path)
         db.session.add(location)
         db.session.commit()
         return {"message": "Location added successfully"}, 201

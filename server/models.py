@@ -23,6 +23,7 @@ class Location(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String(120), nullable=False)
+    image_url = db.Column(db.String, nullable=True)
     
     tickets = db.relationship('Ticket', back_populates='location')
     reviews = db.relationship('Review', back_populates='location')
@@ -31,7 +32,8 @@ class Location(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'description': self.description
+            'description': self.description,
+            'image_url': self.image_url
         }
    
 
