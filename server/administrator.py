@@ -107,3 +107,42 @@ class AddTicket(Resource):
         return {"message": "Ticket posted successfully"}, 201
 
 administrator_api.add_resource(AddTicket, '/add_ticket')
+class DeleteTicket(Resource):
+    @jwt_required()
+    def delete(self, ticket_id):
+        user_id = get_jwt_identity()
+        user = User.query.get(user_id)
+        
+        if not user:
+            return {"message": "User not found"}, 404
+        
+        ticket = Ticket.query.get(ticket_id)
+        
+        if not ticket:
+            return {"message": "Ticket not found"}, 404
+        
+        db.session.delete(ticket)
+        db.session.commit()
+        return {"message": "Ticket deleted successfully"}, 200
+class GetTicket(Resource):
+    @jwt_required()
+    def get(self, ticket_id):
+        user_id = get_jwt_identity()
+        user = User.query.get(user_id)
+        
+        if not user:
+            return {"message": "User not found"}, 404
+        
+        ticket = Ticket.query.get(ticket_id)
+        
+        if not ticket:
+            return {"message": "Ticket not found"}, 404
+        
+        return {
+            "id": ticket.id,
+            "user_id": ticket.user_id,
+            "location_id": ticket.location_id,
+            "price": ticket.price,
+            "means": ticket.means,
+            "seat_no": ticket.seat_no
+        }, 200
