@@ -1,4 +1,5 @@
-get http://127.0.0.1:5000/traveler/tickets
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDYwNjkwOCwianRpIjoiNjVjMGVlZDQtYTI4OS00MDY4LWFmMzYtZjk5M2U5ZWQyNmFjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzIwNjA2OTA4LCJjc3JmIjoiYjkwNGMyM2ItM2M4MS00MWFhLThkYmYtNzBmMDllZmNmZDliIiwiZXhwIjoxNzIwNjA3ODA4fQ.BRI6FT8J_eaE4LyeKNQZMoD8Am1Gsi3NUCTd44DNpLE
+GET http://127.0.0.1:5000/traveler/tickets
 Content-Type: application/json
+
+
 

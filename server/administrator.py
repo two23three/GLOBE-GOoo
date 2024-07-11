@@ -179,9 +179,4 @@ class UpdateTicket(Resource):
         db.session.commit()
         return {"message": "Ticket updated successfully"}, 200
 
-# Ticket Resources
-administrator_api.add_resource(AddTicket, '/add_ticket')
-administrator_api.add_resource(DeleteTicket, '/delete_ticket/<int:ticket_id>')
-administrator_api.add_resource(GetTicket, '/get_ticket/<int:ticket_id>')
-administrator_api.add_resource(UpdateTicket, '/update_ticket/<int:ticket_id>')
 

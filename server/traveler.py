@@ -19,11 +19,12 @@ review_args.add_argument("rating", type=int, required=True, help="Rating of the 
 review_args.add_argument("comment", type=str, required=True, help="Comment for the review")
 
 class GetTickets(Resource):
-    @jwt_required()
+    
     def get(self):
         tickets = Ticket.query.all()
         return [ticket.to_dict() for ticket in tickets], 200
     
+traveler_api.add_resource(GetTickets, '/tickets')
 class BuyTicket(Resource):
     @jwt_required()
     def post(self):
@@ -74,4 +75,3 @@ class PostReview(Resource):
 
 traveler_api.add_resource(PostReview, '/post_review')
 
-traveler_api.add_resource(GetTickets, '/tickets')

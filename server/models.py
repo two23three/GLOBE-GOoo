@@ -38,7 +38,9 @@ class Location(db.Model):
 # Define the Ticket model
 class Ticket(db.Model, SerializerMixin):
     __tablename__ = 'tickets'
-
+    
+    serialize_rules = ('-user', '-location')
+    
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     price = db.Column(db.Float, nullable=False)

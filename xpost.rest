@@ -1,9 +1,10 @@
-POST  http://127.0.0.1:5000/administrator/add_location
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDYxNDI1OSwianRpIjoiMTZlYmNjMTEtZmI3Yi00NWQ5LTg2YTQtODE0NTk1ZDQ1NzcyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzIwNjE0MjU5LCJjc3JmIjoiMmRhMTBmYzktZTRjMi00ODI5LWE0YzMtYzJjMTYxY2Y2NmJkIiwiZXhwIjoxNzIwNjE1MTU5fQ._xYZC2MjbGx0jLudVIMw-zVSk2DpOpwSYz3y49rzajA
+POST  http://127.0.0.1:5000/administrator/add_ticket
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDY4NDkyNSwianRpIjoiMWZiYzBiYjItMGMxMC00YTcxLWExNmEtZTNkMjc4N2Y4YTZhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzIwNjg0OTI1LCJjc3JmIjoiZGQyZWFiNTAtM2M2NC00OTNkLTllMDYtOGNlNjY0MGVkNDkwIiwiZXhwIjoxNzIwNjg1ODI1fQ.zgH2oBtYDBmJLrgBmH6Weklm5Q6Tbf9DLexQUdP1-AY
 Content-Type: application/json
 
 {
-"name":"Maldives",
-"description":"The country has a unique culture, with a strong emphasis on hospitality and respect for guests. The Maldivian people are known for their warm welcomes and friendly nature."
+"location_id":1,
+"price":200,
+"means":"Air",
+"seat_no":1
 }
-
