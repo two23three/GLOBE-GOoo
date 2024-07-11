@@ -107,7 +107,7 @@ class AddTicket(Resource):
         return {"message": "Ticket posted successfully"}, 201
 
 administrator_api.add_resource(AddTicket, '/add_ticket')
-class DeleteTicket(Resource):
+class  DeleteTicket(Resource):
     @jwt_required()
     def delete(self, ticket_id):
         user_id = get_jwt_identity()
