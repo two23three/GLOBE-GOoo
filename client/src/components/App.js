@@ -1,8 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import LocationList from "./LocationList";
+import LocationDetails from './LocationDetails';
 
-function App() {
-  return <h1>Project Client</h1>;
-}
+const App = () => {
+  return (
+    <Router>
+      <div>
+        <h1>Traveler</h1>
+        <Switch>
+          <Route path="/" exact component={LocationList} />
+          <Route path="/location/:id" component={LocationDetails} />
+        </Switch>
+      </div>
+    </Router>
+  );
+};
 
-export default App;
+export default App

@@ -3,7 +3,7 @@ from flask_restful import Api, Resource, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from models import db, Ticket, Review, Location, User
 
-traveler_bp = Blueprint('traveler_bp', __name__, url_prefix='/traveler')
+traveler_bp = Blueprint('traveler_bp',__name__, url_prefix='/traveler')
 traveler_api = Api(traveler_bp)
 
 # Request parsers
@@ -25,29 +25,31 @@ class GetTickets(Resource):
         return [ticket.to_dict() for ticket in tickets], 200
     
 traveler_api.add_resource(GetTickets, '/tickets')
+
+import logging
+
 class BuyTicket(Resource):
     @jwt_required()
     def post(self):
         data = ticket_args.parse_args()
+        logging.debug(f'Received data: {data}')
         user_id = get_jwt_identity()
         user = User.query.get(user_id)
-        
-        if not user:
-            return {"message": "User not found"}, 404
-        
-        ticket = Ticket.query.filter_by(
-            location_id=data["location_id"],
-            price=data["price"],
-            means=data["means"],
-            seat_no=data["seat_no"]
-        ).first()
 
-        if not ticket:
+        if not user:
+            logging.debug('User not found')
+            return {"message": "User not found"}, 404
+
+        ticket = Ticket.query.get(data["ticket_id"])
+        logging.debug(f'Ticket found: {ticket}')
+
+        if not ticket or ticket.user_id:
+            logging.debug('Ticket not found or already purchased')
             return {"message": "Ticket not found or already purchased"}, 404
-        
+
         ticket.user_id = user_id  # Assign ticket to the user
         db.session.commit()
-        
+
         return {"message": "Ticket purchased successfully"}, 200
 
 traveler_api.add_resource(BuyTicket, '/buy_ticket')
@@ -81,3 +83,12 @@ class GetLocations(Resource):
         return [location.to_dict() for location in locations], 200
 
 traveler_api.add_resource(GetLocations, '/locations')
+
+class ClickedLocation(Resource):
+    def get(self, location_id):
+        location = Location.query.get(location_id)
+        if not location:
+            return {"message": "Location not found"}, 404
+        return location.to_dict(), 200
+
+traveler_api.add_resource(ClickedLocation, '/locations/<int:location_id>')
