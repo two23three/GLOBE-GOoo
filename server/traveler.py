@@ -75,3 +75,9 @@ class PostReview(Resource):
 
 traveler_api.add_resource(PostReview, '/post_review')
 
+class GetLocations(Resource):
+    def get(self):
+        locations = Location.query.all()
+        return [location.to_dict() for location in locations], 200
+
+traveler_api.add_resource(GetLocations, '/locations')

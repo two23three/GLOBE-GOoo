@@ -1,11 +1,14 @@
-POST http://127.0.0.1:5000/traveler/post_review
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDY4OTQ3MCwianRpIjoiYjg2ZjM5YTgtYTg5Zi00NWM1LTlmYTktNjZjZmYyZmE4OTJkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MywibmJmIjoxNzIwNjg5NDcwLCJjc3JmIjoiM2Q2NzI4YTEtNzc1Zi00YTU1LWJiYzgtODljZmYwODI5ZmExIiwiZXhwIjoxNzIwNjkwMzcwfQ.ZxDanWzZc8bXRfqOKTwx_gdIU0X42Qs3vIga4cSeGuA
+POST http://127.0.0.1:5000/traveler/buy_ticket
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDY5Nzk2NCwianRpIjoiZjU5ZGQ1NmEtZjVhMS00ZDA4LWI1NjAtZWVhNzA5YWVmNmIwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzIwNjk3OTY0LCJjc3JmIjoiODI4ZGZhY2YtMGE3YS00MGIzLWIxNmUtMTI4MTBmY2Q3ODY5IiwiZXhwIjoxNzIwNjk4ODY0fQ.ljfyW0n1r70N7uT8nD5RdTuW8hEJodQRq9HhRfzFypc
 Content-Type: application/json
 
 {
-"location_id":1,
-"rating":5,
-"comment":"very beatuful"
+"user_id": 1,
+"means": "Bus",
+"price": 100,
+"seat_no": 3,
+"id": 2,
+"location_id": 2
 }
 
 
