@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import './LocationDetails.css'; 
 
 const LocationDetails = () => {
   const { id } = useParams();
@@ -65,7 +66,7 @@ const LocationDetails = () => {
   }
 
   return (
-    <div>
+    <div className="location-details">
       <h2>{location.name}</h2>
       <p>{location.description}</p>
       <h3>Available Tickets</h3>
