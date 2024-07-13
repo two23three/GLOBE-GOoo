@@ -7,7 +7,7 @@ const App = () => {
   return (
     <Router>
       <div>
-        <h1>Traveler</h1>
+        <h1>Globe GO</h1>
         <Switch>
           <Route path="/" exact component={LocationList} />
           <Route path="/location/:id" component={LocationDetails} />
