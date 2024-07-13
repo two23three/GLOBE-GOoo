@@ -27,7 +27,7 @@ function App() {
 
 const Home = () => (
   <div>
-    <h2>Welcome to the Location App</h2>
+    <h2>Welcome to the Globe Go</h2>
     <p>Select a location from the navbar to view details.</p>
   </div>
 );
