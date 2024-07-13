@@ -42,7 +42,7 @@ const LocationDetails = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${jwtToken}` 
+          'Authorization': `Bearer ${jwtToken}`
         },
         body: JSON.stringify(ticketData)
       });

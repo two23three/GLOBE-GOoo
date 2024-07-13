@@ -1,20 +1,35 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import LocationList from "./LocationList";
-import LocationDetails from './LocationDetails';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import LocationList from './LocationList';  // Corrected path
+import LocationDetails from './LocationDetails';  // Corrected path
 
-const App = () => {
+function App() {
   return (
     <Router>
       <div>
-        <h1>Traveler</h1>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <LocationList />
+          </ul>
+        </nav>
+
         <Switch>
-          <Route path="/" exact component={LocationList} />
+          <Route exact path="/" component={Home} />
           <Route path="/location/:id" component={LocationDetails} />
         </Switch>
       </div>
     </Router>
   );
-};
+}
 
-export default App
+const Home = () => (
+  <div>
+    <h2>Welcome to the Location App</h2>
+    <p>Select a location from the navbar to view details.</p>
+  </div>
+);
+
+export default App;

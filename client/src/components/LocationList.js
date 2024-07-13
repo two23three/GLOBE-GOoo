@@ -12,18 +12,13 @@ const LocationList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Locations</h2>
-      <ul>
-        {locations.map(location => (
-          <li key={location.id}>
-            <h3>{location.name}</h3>
-            <p>{location.description}</p>
-            <Link to={`/location/${location.id}`}>View Details</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {locations.map(location => (
+        <li key={location.id}>
+          <Link to={`/location/${location.id}`}>{location.name}</Link>
+        </li>
+      ))}
+    </ul>
   );
 };
 
