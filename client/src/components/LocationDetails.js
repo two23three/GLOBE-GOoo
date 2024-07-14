@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import ReviewForm from './ReviewForm';
 import './LocationDetails.css'; 
+
 
 const LocationDetails = () => {
   const { id } = useParams();
   const [location, setLocation] = useState(null);
+  const [reviews, setReviews] = useState([]);
   const [tickets, setTickets] = useState([]);
   const [selectedTicket, setSelectedTicket] = useState(null);
 
   useEffect(() => {
-    fetch(`/traveler/locations/${id}`)
-      .then(response => response.json())
-      .then(data => setLocation(data))
-      .catch(error => console.error('Error fetching location details:', error));
+    axios.get(`/traveler/locations/${id}`)
+      .then(response => {
+        setLocation(response.data);
+        setReviews(response.data.reviews);
+      })
+      .catch(error => {
+        console.error('Error fetching location details:', error);
+      });
   }, [id]);
 
   useEffect(() => {
@@ -71,13 +79,22 @@ const LocationDetails = () => {
     }
   };
 
-  if (!location) {
-    return <div>Loading...</div>;
-  }
+  const handleReviewPosted = () => {
+    // Refresh reviews after a new review is posted
+    axios.get(`/traveler/locations/${id}`)
+      .then(response => {
+        setReviews(response.data.reviews);
+      })
+      .catch(error => {
+        console.error('Error fetching reviews:', error);
+      });
+  };
+
+  if (!location) return <div>Loading...</div>;
 
   return (
-    <div className="location-details">
-      <h2>{location.name}</h2>
+    <div>
+      <h1>{location.name}</h1>
       <p>{location.description}</p>
       <h3>Available Tickets</h3>
       <select onChange={(e) => setSelectedTicket(e.target.value)}>
@@ -89,6 +106,21 @@ const LocationDetails = () => {
         ))}
       </select>
       <button onClick={buyTicket}>Buy Ticket</button>
+
+      <h2>Reviews</h2>
+      {reviews.length > 0 ? (
+        <ul>
+          {reviews.map(review => (
+            <li key={review.id}>
+              <p>Rating: {review.rating}</p>
+              <p>{review.comment}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No reviews yet</p>
+      )}
+      <ReviewForm locationId={id} onReviewPosted={handleReviewPosted} />
     </div>
   );
 };
