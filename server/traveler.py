@@ -93,3 +93,16 @@ class ClickedLocation(Resource):
         return location.to_dict(), 200
 
 traveler_api.add_resource(ClickedLocation, '/locations/<int:location_id>')
+
+
+class GetUserReviews(Resource):
+    @jwt_required()
+    def get(self):
+        user_id = get_jwt_identity()
+        user = User.query.get(user_id)
+        if not user:
+            return {"message": "User not found"}, 404
+        reviews = Review.query.filter_by(user_id=user_id).all()
+        return [review.to_dict() for review in reviews], 200
+
+traveler_api.add_resource(GetUserReviews, '/user_reviews')

@@ -5,6 +5,7 @@ import LocationDetails from './LocationDetails';
 import Navbar from './Navbar';
 import AuthForm from './AuthForm';
 import './App.css';
+import UserReviews from './Reviews';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -30,6 +31,9 @@ const App = () => {
           </Route>
           <Route path="/location/:id">
             {isAuthenticated ? <LocationDetails /> : <Redirect to="/login" />}
+          </Route>
+          <Route path="/reviews">
+            {isAuthenticated ? <UserReviews /> : <Redirect to="/login" />}
           </Route>
           <Route path="/login">
             <AuthForm onLogin={handleLogin} />

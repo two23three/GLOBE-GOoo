@@ -10,7 +10,9 @@ const Navbar = () => {
         <li>
           <Link to="/">Home</Link>
         </li>
-        {/* Add more links as needed */}
+        <li>
+          <Link to="/reviews">Reviews</Link>
+        </li>
       </ul>
     </nav>
   );
