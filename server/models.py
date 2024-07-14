@@ -33,7 +33,9 @@ class Location(db.Model):
             'id': self.id,
             'name': self.name,
             'description': self.description,
-            'image_url': self.image_url
+            'image_url': self.image_url,
+            'reviews': [review.to_dict() for review in self.reviews]
+
         }
    
 
@@ -54,6 +56,7 @@ class Ticket(db.Model, SerializerMixin):
     location = db.relationship('Location', back_populates='tickets')
 
 # Define the Review model
+# Define the Review model
 class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews'
 
@@ -65,5 +68,14 @@ class Review(db.Model, SerializerMixin):
     
     user = db.relationship('User', back_populates='reviews')
     location = db.relationship('Location', back_populates='reviews')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'location_id': self.location_id,
+            'rating': self.rating,
+            'comment': self.comment
+        }
 
 
