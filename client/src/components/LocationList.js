@@ -6,9 +6,18 @@ const LocationList = () => {
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
+    console.log("Fetching locations...");
     fetch('/traveler/locations')
-      .then(response => response.json())
-      .then(data => setLocations(data))
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("Fetched data:", data);
+        setLocations(data);
+      })
       .catch(error => console.error('Error fetching locations:', error));
   }, []);
 

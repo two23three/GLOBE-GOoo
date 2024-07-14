@@ -1,21 +1,43 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import LocationList from './LocationList';
 import LocationDetails from './LocationDetails';
 import Navbar from './Navbar';
 import AuthForm from './AuthForm';
-import PrivateRoute from './PrivateRoute';
-import './App.css'; 
+import './App.css';
 
 const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('jwt_token');
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
   return (
     <Router>
       <div className="app-container">
         <Navbar />
         <Switch>
-          <Route path="/" exact component={AuthForm} />
-          <PrivateRoute path="/locations" exact component={LocationList} />
-          <PrivateRoute path="/location/:id" component={LocationDetails} />
+          <Route path="/" exact>
+            {isAuthenticated ? <LocationList /> : <Redirect to="/login" />}
+          </Route>
+          <Route path="/location/:id">
+            {isAuthenticated ? <LocationDetails /> : <Redirect to="/login" />}
+          </Route>
+          <Route path="/login">
+            <AuthForm onLogin={handleLogin} />
+          </Route>
+          <Route path="/signup">
+            <AuthForm onLogin={handleLogin} />
+          </Route>
+          <Redirect to="/login" />
         </Switch>
       </div>
     </Router>

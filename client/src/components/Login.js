@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const initialValues = {
     email: '',
     password: ''
@@ -21,9 +21,9 @@ const Login = () => {
     axios.post('/auth/login', values)
       .then(response => {
         console.log('User logged in successfully:', response.data);
-        // Handle token storage or context management
-        localStorage.setItem('jwt_token', response.data.token); // Example: Store token in localStorage
-        history.push('/locations'); // Redirect to locations page after successful login
+        localStorage.setItem('jwt_token', response.data.token); // Store token in localStorage
+        onLogin(); // Call the onLogin method to update authentication status
+        history.push('/'); // Redirect to the home page which will now show the LocationList
       })
       .catch(error => {
         console.error('Error logging in user:', error);

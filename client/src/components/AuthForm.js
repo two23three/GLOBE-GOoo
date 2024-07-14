@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Login from './Login';
 import Signup from './Signup';
 
-const AuthForm = () => {
+const AuthForm = ({ onLogin }) => {
   const [showLogin, setShowLogin] = useState(true);
 
   const toggleForm = () => {
@@ -14,12 +14,12 @@ const AuthForm = () => {
       <h1>Welcome</h1>
       {showLogin ? (
         <div>
-          <Login />
+          <Login onLogin={onLogin} />
           <p>Don't have an account? <button onClick={toggleForm}>Sign Up</button></p>
         </div>
       ) : (
         <div>
-          <Signup />
+          <Signup onLogin={onLogin} />
           <p>Already have an account? <button onClick={toggleForm}>Login</button></p>
         </div>
       )}

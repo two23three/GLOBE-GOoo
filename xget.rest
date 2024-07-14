@@ -1,14 +1,6 @@
-POST http://127.0.0.1:5000/traveler/buy_ticket
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDY5Nzk2NCwianRpIjoiZjU5ZGQ1NmEtZjVhMS00ZDA4LWI1NjAtZWVhNzA5YWVmNmIwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzIwNjk3OTY0LCJjc3JmIjoiODI4ZGZhY2YtMGE3YS00MGIzLWIxNmUtMTI4MTBmY2Q3ODY5IiwiZXhwIjoxNzIwNjk4ODY0fQ.ljfyW0n1r70N7uT8nD5RdTuW8hEJodQRq9HhRfzFypc
+GET http://127.0.0.1:5555/traveler/locations
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMDk1MzM3MSwianRpIjoiNjUxZWRlMzUtODA1Yy00YjhmLTlhMDMtMjFiODg3ZDAyMzBhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzIwOTUzMzcxLCJjc3JmIjoiYWNhNDVjM2ItZjMwZS00YjQ2LTkwMDktZWFiMGZiYmM3NmExIiwiZXhwIjoxNzIwOTU0MjcxfQ.WQHozm-msTozn1sEGcHr_OvJqzSutHc2iWf0nv9W9TY
 Content-Type: application/json
 
-{
-"user_id": 1,
-"means": "Bus",
-"price": 100,
-"seat_no": 3,
-"id": 2,
-"location_id": 2
-}
 
 
