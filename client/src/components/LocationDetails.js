@@ -28,9 +28,19 @@ const LocationDetails = () => {
       return;
     }
 
-    const ticketData = { ticket_id: selectedTicket };
-    const jwtToken = localStorage.getItem('jwt_token');
+    const selectedTicketData = tickets.find(ticket => ticket.id === parseInt(selectedTicket));
+    if (!selectedTicketData) {
+    alert("Selected ticket data not found.");
+    return;
+    }
+    
+    
+    const { location_id, price, means, seat_no } = selectedTicketData;
+    const ticketData = { location_id, price, means, seat_no ,ticket_id: selectedTicket};
+    console.log('Ticket Data:', ticketData);
 
+    const jwtToken = localStorage.getItem('jwt_token');
+    console.log('JWT Token:', jwtToken);
     if (!jwtToken) {
       alert("JWT token is missing. Please log in again.");
       return;
@@ -74,7 +84,7 @@ const LocationDetails = () => {
         <option value="">Select a ticket</option>
         {tickets.map(ticket => (
           <option key={ticket.id} value={ticket.id}>
-            {`Ticket ID: ${ticket.id}, Price: ${ticket.price}, Means: ${ticket.means}, Seat No: ${ticket.seat_no}`}
+            {`Ticket ID: ${ticket.id}, Price: ${ticket.price}, Means: ${ticket.means}, Seat No: ${ticket.seat_no},Location ID: ${ticket.location_id}`}
           </option>
         ))}
       </select>
