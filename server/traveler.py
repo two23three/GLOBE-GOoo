@@ -8,6 +8,7 @@ traveler_api = Api(traveler_bp)
 
 # Request parsers
 ticket_args = reqparse.RequestParser()
+ticket_args.add_argument("ticket_id", type=int, required=True, help="ID of the ticket")
 ticket_args.add_argument("location_id", type=int, required=True, help="ID of the location")
 ticket_args.add_argument("price", type=float, required=True, help="Price of the ticket")
 ticket_args.add_argument("means", type=str, required=True, help="Means of travel")

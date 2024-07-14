@@ -44,7 +44,7 @@ class Ticket(db.Model, SerializerMixin):
     serialize_rules = ('-user', '-location')
     
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     price = db.Column(db.Float, nullable=False)
     means = db.Column(db.String(50), nullable=False)
     seat_no = db.Column(db.Integer, nullable=False)

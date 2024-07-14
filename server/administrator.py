@@ -100,11 +100,11 @@ class AddTicket(Resource):
     @jwt_required()
     def post(self):
         data = ticket_args.parse_args()
-        user_id = get_jwt_identity()
-        user = User.query.get(user_id)
+        # user_id = get_jwt_identity()
+        # user = User.query.get(user_id)
         
-        if not user:
-            return {"message": "User not found"}, 404
+        # if not user:
+        #     return {"message": "User not found"}, 404
         
         location = Location.query.get(data["location_id"])
         
@@ -112,7 +112,7 @@ class AddTicket(Resource):
             return {"message": "Location not found"}, 404
         
         ticket = Ticket(
-            user_id=user_id,
+            # user_id=user_id,
             location_id=data["location_id"],
             price=data["price"],
             means=data["means"],
