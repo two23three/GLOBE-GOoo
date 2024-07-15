@@ -2,7 +2,7 @@
 .location-details {
     padding: 20px;
   }
-  
+
   .location-details select,
   .location-details button {
     display: block;
@@ -10,7 +10,7 @@
     padding: 10px;
     font-size: 16px;
   }
-  
+
   .location-details button {
     background-color: #ffdd00; /* Yellow background */
     border: none;
@@ -18,8 +18,11 @@
     cursor: pointer;
     border-radius: 5px;
   }
-  
+
   .location-details button:hover {
     background-color: #ffc800; /* Darker yellow */
   }
-  
+
+  .location-details{
+    padding: 20px;
+  }
