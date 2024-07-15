@@ -41,3 +41,6 @@
     cursor:pointer;
     border-radius:5px;
   }
+  .location-details button:hover{
+    background-color: #ffc800;
+  }
