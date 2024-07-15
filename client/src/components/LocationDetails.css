@@ -26,3 +26,7 @@
   .location-details{
     padding: 20px;
   }
+  .location-details select,
+  .location-details button{
+    display: block;
+  }
