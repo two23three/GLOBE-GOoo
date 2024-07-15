@@ -73,9 +73,13 @@ class Review(db.Model, SerializerMixin):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'location_id': self.location_id,
+            'location': {
+                'id': self.location.id,
+                'name': self.location.name,
+                'description': self.location.description,
+                'image_url': self.location.image_url
+            },
             'rating': self.rating,
             'comment': self.comment
         }
-
 

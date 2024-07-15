@@ -106,3 +106,16 @@ class GetUserReviews(Resource):
         return [review.to_dict() for review in reviews], 200
 
 traveler_api.add_resource(GetUserReviews, '/user_reviews')
+
+
+class DeleteUserReview(Resource):
+    @jwt_required()
+    def delete(self, review_id):
+        review = Review.query.get(review_id)
+        if not review:
+            return {"message": "Review not found"}, 404
+        db.session.delete(review)
+        db.session.commit()
+        return {"message": "Review deleted successfully"}, 200
+
+traveler_api.add_resource(DeleteUserReview, '/user_reviews/<int:review_id>')
