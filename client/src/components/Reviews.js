@@ -4,6 +4,8 @@ import axios from 'axios';
 const UserReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [editReviewId, setEditReviewId] = useState(null);
+  const [editReviewText, setEditReviewText] = useState('');
 
   useEffect(() => {
     const fetchUserReviews = async () => {
@@ -30,6 +32,33 @@ const UserReviews = () => {
 
     fetchUserReviews();
   }, []);
+
+  const updateReview = async (reviewId) => {
+    const reviewData = { review_text: editReviewText };
+    const jwtToken = localStorage.getItem('jwt_token');
+
+    if (!jwtToken) {
+      alert("JWT token is missing. Please log in again.");
+      return;
+    }
+
+    try {
+      const response = await axios.patch(`/traveler/user_reviews/${reviewId}`, reviewData, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${jwtToken}`
+        }
+      });
+
+      const data = response.data;
+      alert(data.message);
+      setReviews(reviews.map(review => (review.id === reviewId ? { ...review, review_text: editReviewText } : review)));
+      setEditReviewId(null);
+      setEditReviewText('');
+    } catch (error) {
+      console.error('Error updating review:', error);
+    }
+  };
 
   const handleDeleteReview = async (reviewId) => {
     try {
@@ -71,7 +100,21 @@ const UserReviews = () => {
                   )}
                 </div>
               )}
-              <button onClick={() => handleDeleteReview(review.id)}>Delete</button>
+              {editReviewId === review.id ? (
+                <>
+                  <textarea
+                    value={editReviewText}
+                    onChange={(e) => setEditReviewText(e.target.value)}
+                  />
+                  <button onClick={() => updateReview(review.id)}>Save</button>
+                  <button onClick={() => { setEditReviewId(null); setEditReviewText(''); }}>Cancel</button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => { setEditReviewId(review.id); setEditReviewText(review.review_text); }}>Edit</button>
+                  <button onClick={() => handleDeleteReview(review.id)}>Delete</button>
+                </>
+              )}
             </li>
           ))}
         </ul>
