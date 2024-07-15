@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import EditReviewForm from './EditReviewForm.js';  
 
 const UserReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [editingReviewId, setEditingReviewId] = useState(null);
 
   useEffect(() => {
     const fetchUserReviews = async () => {
@@ -51,6 +53,18 @@ const UserReviews = () => {
     }
   };
 
+  const handleReviewUpdated = () => {
+    setEditingReviewId(null);
+    // Re-fetch reviews after update
+    axios.get('/traveler/user_reviews', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt_token')}`
+      }
+    })
+    .then(response => setReviews(response.data))
+    .catch(error => console.error('Error fetching user reviews:', error));
+  };
+
   if (loading) return <div>Loading...</div>;
 
   return (
@@ -60,18 +74,25 @@ const UserReviews = () => {
         <ul>
           {reviews.map(review => (
             <li key={review.id}>
-              <p>Rating: {review.rating}</p>
-              <p>{review.comment}</p>
-              {review.location && ( 
-                <div>
-                  <p>Location:</p>
-                  <p>Name: {review.location.name}</p>
-                  {review.location.image_url && ( 
-                    <img src={review.location.image_url} alt={review.location.name} style={{ maxWidth: '100px' }} />
+              {editingReviewId === review.id ? (
+                <EditReviewForm review={review} onReviewUpdated={handleReviewUpdated} />
+              ) : (
+                <>
+                  <p>Rating: {review.rating}</p>
+                  <p>{review.comment}</p>
+                  {review.location && (
+                    <div>
+                      <p>Location:</p>
+                      <p>Name: {review.location.name}</p>
+                      {review.location.image_url && (
+                        <img src={review.location.image_url} alt={review.location.name} style={{ maxWidth: '100px' }} />
+                      )}
+                    </div>
                   )}
-                </div>
+                  <button onClick={() => setEditingReviewId(review.id)}>Edit</button>
+                  <button onClick={() => handleDeleteReview(review.id)}>Delete</button>
+                </>
               )}
-              <button onClick={() => handleDeleteReview(review.id)}>Delete</button>
             </li>
           ))}
         </ul>

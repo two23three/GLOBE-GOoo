@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import Login from './Login'; 
-
+import './signup.css';
 const Signup = () => {
   const initialValues = {
     email: '',

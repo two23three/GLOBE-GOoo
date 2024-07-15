@@ -119,3 +119,17 @@ class DeleteUserReview(Resource):
         return {"message": "Review deleted successfully"}, 200
 
 traveler_api.add_resource(DeleteUserReview, '/user_reviews/<int:review_id>')
+
+class PatchUserReview(Resource):
+    @jwt_required()
+    def patch(self, review_id):
+        review = Review.query.get(review_id)
+        if not review:
+            return {"message": "Review not found"}, 404
+        data = review_args.parse_args()
+        review.rating = data["rating"]
+        review.comment = data["comment"]
+        db.session.commit()
+        return {"message": "Review updated successfully"}, 200
+
+traveler_api.add_resource(PatchUserReview, '/user_reviews/<int:review_id>')

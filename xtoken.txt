@@ -1,0 +1,47 @@
+ {
+            "name": "Beijing",
+        "description": "Beijing, China, is known for its modern architecture as well as historic sites such as the Forbidden City.",
+        "image_url": "https://st5.depositphotos.com/36059186/68717/i/380/depositphotos_687178952-stock-photo-beijing-china-august-2018-pavilions.jpg"
+    },
+    {
+            "name": "Berlin",
+        "description": "Berlin, Germany, is noted for its art scene, modern landmarks, and historical significance.",
+        "image_url": "https://static8.depositphotos.com/1014956/1046/i/380/depositphotos_10462719-stock-photo-aerial-view-of-berlin.jpg"
+    },
+    {
+            "name": "Ottawa",
+        "description": "Ottawa, Canada, is known for its Victorian architecture, museums, and the scenic Rideau Canal.",
+        "image_url": "https://st.depositphotos.com/1030808/2988/i/380/depositphotos_29886669-stock-photo-ottawa-city-skyline-view-with.jp"
+    },
+    {
+            "name": "Canberra",
+        "description": "Canberra, Australia, is known for its national museums, galleries, and nature reserves.",
+        "image_url": "https://static8.depositphotos.com/1120392/919/i/380/depositphotos_9194465-stock-photo-canberra-a-sunset.jpg"
+    },
+    {
+            "name": "New Delhi",
+        "description": "New Delhi, India, is recognized for its rich history, monuments, and as the seat of all three branches of the Indian government.",
+        "image_url": "https://st.depositphotos.com/2362649/4996/i/380/depositphotos_49960501-stock-photo-traffic-of-people-cars-and.jpg"
+    },
+    {
+            "name": "Moscow",
+        "description": "Moscow, Russia, is known for its historic architecture, including the Kremlin and Red Square.",
+        "image_url": "https://static7.depositphotos.com/1000865/784/i/380/depositphotos_7840169-stock-photo-red-square-moscow-at-sunset.jpg"
+    },
+    {
+            "name": "Rome",
+        "description": "Rome, Italy, is famous for its nearly 3,000 years of globally influential art, architecture, and culture.",
+        "image_url": "https://st.depositphotos.com/1000633/2012/i/380/depositphotos_20125659-stock-photo-panorama-of-vatican-and-rome.jpg"
+    },
+    {
+            "name": "Madrid",
+        "description": "Madrid, Spain, is known for its royal palace, Prado museum, and vibrant cultural life.",
+        "image_url": "https://st5.depositphotos.com/3321903/68447/i/380/depositphotos_684475238-stock-photo-madrid-spain-december-2013-night.jpg"
+    },
+    {
+            "name": "Brasília",
+        "description": "Brasília, Brazil, is known for its modernist architecture and unique urban planning.",
+        "image_url": "https://example.com/images/brasilia.jpg"
+    },
+
+    

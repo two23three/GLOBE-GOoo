@@ -112,6 +112,7 @@ const LocationDetails = () => {
         <ul>
           {reviews.map(review => (
             <li key={review.id}>
+              <h3>username: {review.username}</h3>
               <p>Rating: {review.rating}</p>
               <p>{review.comment}</p>
             </li>
