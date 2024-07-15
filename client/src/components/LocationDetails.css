@@ -29,4 +29,6 @@
   .location-details select,
   .location-details button{
     display: block;
+    margin-top: 10px;
+    
   }
