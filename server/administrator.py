@@ -1,16 +1,16 @@
-from flask import Blueprint,request
-from flask_restful import Api,Resource, reqparse 
-from flask_jwt_extended import jwt_required, get_jwt_identity,JWTManager
-from werkzeug.utils import secure_filename
+from flask import Blueprint, request
+from flask_restful import Api, Resource, reqparse 
+from flask_jwt_extended import jwt_required, get_jwt_identity, JWTManager
 import os
 from models import db, Location, User, Ticket
 
-administrator_bp = Blueprint('administrator_bp',__name__, url_prefix='/administrator')
+administrator_bp = Blueprint('administrator_bp', __name__, url_prefix='/administrator')
 administrator_api = Api(administrator_bp)
 
 location_args = reqparse.RequestParser()
 location_args.add_argument("name", type=str, help="Name of the location")
 location_args.add_argument("description", type=str, help="Description of the location")
+location_args.add_argument("image_url", type=str, help="Image URL of the location")
 
 ticket_args = reqparse.RequestParser()
 ticket_args.add_argument("location_id", type=int, required=True, help="ID of the location")
@@ -18,31 +18,17 @@ ticket_args.add_argument("price", type=float, required=True, help="Price of the 
 ticket_args.add_argument("means", type=str, required=True, help="Means of travel")
 ticket_args.add_argument("seat_no", type=int, required=True, help="Seat number")
 
-UPLOAD_FOLDER = 'uploads/'  
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 class AddLocation(Resource):
     @jwt_required()
     def post(self):
         data = location_args.parse_args()
-        file = request.files.get('image')
         user_id = get_jwt_identity()
         user = User.query.get(user_id)
         
         if not user:
             return {"message": "User not found"}, 404
         
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file_path = os.path.join(UPLOAD_FOLDER, filename)
-            file.save(file_path)
-        else:
-            return {"message": "Invalid file type"}, 400
-        
-        location = Location(name=data["name"], description=data["description"], image_url=file_path)
+        location = Location(name=data["name"], description=data["description"], image_url=data["image_url"])
         db.session.add(location)
         db.session.commit()
         return {"message": "Location added successfully"}, 201
@@ -55,6 +41,7 @@ class GetLocations(Resource):
 
 administrator_api.add_resource(GetLocations, '/get_locations')
 administrator_api.add_resource(AddLocation, '/add_location')
+
 class DeleteLocation(Resource):
     @jwt_required()
     def delete(self, location_id):
@@ -72,6 +59,7 @@ class DeleteLocation(Resource):
         db.session.delete(location)
         db.session.commit()
         return {"message": "Location has been deleted successfully"}, 200
+
 administrator_api.add_resource(DeleteLocation, '/delete_location/<int:location_id>')
 
 class UpdateLocation(Resource):
@@ -91,6 +79,7 @@ class UpdateLocation(Resource):
         
         location.name = data["name"]
         location.description = data["description"]
+        location.image_url = data["image_url"]
         db.session.commit()
         return {"message": "Location has updated successfully"}, 200
 
@@ -100,19 +89,12 @@ class AddTicket(Resource):
     @jwt_required()
     def post(self):
         data = ticket_args.parse_args()
-        # user_id = get_jwt_identity()
-        # user = User.query.get(user_id)
-        
-        # if not user:
-        #     return {"message": "User not found"}, 404
-        
         location = Location.query.get(data["location_id"])
         
         if not location:
             return {"message": "Location not found"}, 404
         
         ticket = Ticket(
-            # user_id=user_id,
             location_id=data["location_id"],
             price=data["price"],
             means=data["means"],
@@ -123,7 +105,8 @@ class AddTicket(Resource):
         return {"message": "Ticket posted successfully"}, 201
 
 administrator_api.add_resource(AddTicket, '/add_ticket')
-class  DeleteTicket(Resource):
+
+class DeleteTicket(Resource):
     @jwt_required()
     def delete(self, ticket_id):
         user_id = get_jwt_identity()
@@ -140,6 +123,9 @@ class  DeleteTicket(Resource):
         db.session.delete(ticket)
         db.session.commit()
         return {"message": "Ticket deleted successfully"}, 200
+
+administrator_api.add_resource(DeleteTicket, '/delete_ticket/<int:ticket_id>')
+
 class GetTicket(Resource):
     @jwt_required()
     def get(self, ticket_id):
@@ -162,15 +148,12 @@ class GetTicket(Resource):
             "means": ticket.means,
             "seat_no": ticket.seat_no
         }, 200
+
+administrator_api.add_resource(GetTicket, '/get_ticket/<int:ticket_id>')
+
 class UpdateTicket(Resource):
     @jwt_required()
     def put(self, ticket_id):
-        ticket_args = reqparse.RequestParser()
-        ticket_args.add_argument("location_id", type=int, required=False, help="Location ID is required")
-        ticket_args.add_argument("price", type=float, required=False, help="Price is required")
-        ticket_args.add_argument("means", type=str, required=False, help="Means of transport is required")
-        ticket_args.add_argument("seat_no", type=str, required=False, help="Seat number is required")
-        
         data = ticket_args.parse_args()
         user_id = get_jwt_identity()
         user = User.query.get(user_id)
@@ -195,9 +178,4 @@ class UpdateTicket(Resource):
         db.session.commit()
         return {"message": "Ticket updated successfully"}, 200
 
-# Ticket Resources
-
-administrator_api.add_resource(DeleteTicket, '/delete_ticket/<int:ticket_id>')
-administrator_api.add_resource(GetTicket, '/get_ticket/<int:ticket_id>')
 administrator_api.add_resource(UpdateTicket, '/update_ticket/<int:ticket_id>')
-

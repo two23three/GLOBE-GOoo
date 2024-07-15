@@ -28,6 +28,7 @@ const LocationList = () => {
         {locations.map(location => (
           <li key={location.id} className="location-item">
             <h3>{location.name}</h3>
+            <img src={location.image_url} alt={location.name} />
             <p>{location.description}</p>
             <Link to={`/location/${location.id}`} className="view-details">View Details</Link>
           </li>

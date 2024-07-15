@@ -56,7 +56,6 @@ class Ticket(db.Model, SerializerMixin):
     location = db.relationship('Location', back_populates='tickets')
 
 # Define the Review model
-# Define the Review model
 class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews'
 
