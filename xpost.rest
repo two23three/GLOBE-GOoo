@@ -1,9 +1,8 @@
 POST  http://127.0.0.1:5555/administrator/add_location
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMTA0MDgxMCwianRpIjoiZDg3NGNmMzEtMzYzNS00NmQ4LTg3MGEtMjU3ZDhlMmNhYjZiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzIxMDQwODEwLCJjc3JmIjoiZTU3MjkyYzItYzJjZS00MjNiLWI1MjQtNTRkMDg2MmM2M2E5IiwiZXhwIjoxNzIxMDQxNzEwfQ.OZKAi4Q24_5K8CzghQJLAQJfw_ME3USNk37cSZ3uxaw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMTA0Njg1NCwianRpIjoiNTJkMGQ5OGQtZTZjZS00ODVjLTlmMDMtNjIwNGEzMWM0NmZiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzIxMDQ2ODU0LCJjc3JmIjoiYzNiYWUyZTktMjUxZS00OGRlLWIzNTEtMzgxZWE3MzFiZGM1IiwiZXhwIjoxNzIxMDQ3NzU0fQ.j33vmYqtxhSiKa_ejMGu_AS7Y3YKygt9XfNcmrDneHU
 Content-Type: application/json
-
- {
-            "name": "Beijing",
-        "description": "Beijing, China, is known for its modern architecture as well as historic sites such as the Forbidden City.",
-        "image_url": "https://st5.depositphotos.com/36059186/68717/i/380/depositphotos_687178952-stock-photo-beijing-china-august-2018-pavilions.jpg"
+{
+        "name": "Oslo",
+        "description": "Oslo, Norway, is known for its green spaces, museums, and waterfront.",
+        "image_url": "https://st.depositphotos.com/1408246/2789/i/380/depositphotos_27891751-stock-photo-oslo-cityscape.jpg"
     }
