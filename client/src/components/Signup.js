@@ -4,7 +4,8 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import Login from './Login'; 
 import './signup.css';
-const Signup = () => {
+
+const Signup = ({ onLogin }) => {
   const initialValues = {
     email: '',
     username: '',
@@ -74,7 +75,7 @@ const Signup = () => {
       {registered && loginAfterRegister && (
         <div>
           <h1>Login after Registration</h1>
-          <Login email={initialValues.email} password={initialValues.password} />
+          <Login email={initialValues.email} password={initialValues.password} onLogin={onLogin} />
         </div>
       )}
     </div>
