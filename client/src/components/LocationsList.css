@@ -4,7 +4,7 @@
   }
   
   .location-item {
-    background-color: #ffdd00; /* Yellow background */
+    background-color: #ffdd00;
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
@@ -15,7 +15,7 @@
   }
   
   .view-details {
-    color: #000; /* Black text */
+    color: #000;
     text-decoration: none;
     font-weight: bold;
   }
