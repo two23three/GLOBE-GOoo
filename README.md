@@ -1,4 +1,37 @@
-# Phase 4 Full-Stack Application Project Template
+# GLOBE-GO
+
+## Project Overview
+Traveler's Haven is a comprehensive travel planning web application designed to enhance the travel experience by offering features such as destination browsing, user reviews, travel journals, personalized itineraries, and ticket purchasing. The application consists of a Flask-based API backend and a React-based frontend, ensuring seamless interaction and a dynamic user experience.
+
+# Features
+- Destination Browsing: Explore various travel destinations with detailed information.
+- User Reviews: Write, update, and delete reviews for different locations.
+- Travel Journals: Maintain a journal of your travel experiences.
+- Personalized Itineraries: Create and manage personalized travel itineraries.
+- Ticket Purchasing: Buy tickets for various travel options directly from the application.
+- User Authentication: Secure login and registration system using JWT.
+- Admin Dashboard: Manage users, locations, and reviews (for administrators).
+
+## Installation
+Prerequisites:
+- Python 3.8+
+- Node.js 14+
+- npm 6+
+- PostgreSQL or SQLite (for development)
+
+## Technologies Used
+Backend:
+- Python
+- Flask
+- Flask-Restful
+- Flask-JWT-Extended
+- Flask-Migrate
+- SQLAlchemy
+
+Frontend:
+- JavaScript
+- React
+- Axios
 
 ## Learning Goals
 
