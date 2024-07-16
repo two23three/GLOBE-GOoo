@@ -33,6 +33,12 @@ Frontend:
 - React
 - Axios
 
+## Backend Setup
+1. Clone the repository:
+
+2. Create a virtual environment and activate it:
+/home/lenny/development/Phase-4/GLOBE-GO/images/Screenshot from 2024-07-17 01-14-26.png
+
 ## Learning Goals
 
 - Discuss the basic directory structure of a full-stack Flask/React application.
