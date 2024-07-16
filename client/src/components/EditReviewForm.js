@@ -27,7 +27,6 @@ const EditReviewForm = ({ review, onReviewUpdated }) => {
 
       if (response.status === 200) {
         onReviewUpdated();
-        alert(response.data.message);
       } else {
         alert(`Error: ${response.data.message}`);
       }

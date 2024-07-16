@@ -126,9 +126,11 @@ class PatchUserReview(Resource):
         review = Review.query.get(review_id)
         if not review:
             return {"message": "Review not found"}, 404
-        data = review_args.parse_args()
-        review.rating = data["rating"]
-        review.comment = data["comment"]
+
+        data = request.get_json()
+        review.rating = data.get("rating", review.rating)
+        review.comment = data.get("comment", review.comment)
+
         db.session.commit()
         return {"message": "Review updated successfully"}, 200
 
