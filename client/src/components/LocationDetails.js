@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import ReviewForm from './ReviewForm';
-import './LocationDetails.css'; 
-
+import './LocationDetails.css';
 
 const LocationDetails = () => {
   const { id } = useParams();
@@ -38,23 +37,18 @@ const LocationDetails = () => {
 
     const selectedTicketData = tickets.find(ticket => ticket.id === parseInt(selectedTicket));
     if (!selectedTicketData) {
-    alert("Selected ticket data not found.");
-    return;
+      alert("Selected ticket data not found.");
+      return;
     }
-    
-    
+
     const { location_id, price, means, seat_no } = selectedTicketData;
-    const ticketData = { location_id, price, means, seat_no ,ticket_id: selectedTicket};
-    console.log('Ticket Data:', ticketData);
+    const ticketData = { location_id, price, means, seat_no, ticket_id: selectedTicket };
 
     const jwtToken = localStorage.getItem('jwt_token');
-    console.log('JWT Token:', jwtToken);
     if (!jwtToken) {
       alert("JWT token is missing. Please log in again.");
       return;
     }
-
-    console.log('JWT Token:', jwtToken);
 
     try {
       const response = await fetch('/traveler/buy_ticket', {
@@ -67,8 +61,6 @@ const LocationDetails = () => {
       });
 
       const data = await response.json();
-      console.log('Response:', data);
-
       if (response.ok) {
         alert(data.message);
       } else {
@@ -80,7 +72,6 @@ const LocationDetails = () => {
   };
 
   const handleReviewPosted = () => {
-    // Refresh reviews after a new review is posted
     axios.get(`/traveler/locations/${id}`)
       .then(response => {
         setReviews(response.data.reviews);
@@ -93,7 +84,7 @@ const LocationDetails = () => {
   if (!location) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="location-details">
       <h1>{location.name}</h1>
       <p>{location.description}</p>
       <h3>Available Tickets</h3>
@@ -101,7 +92,7 @@ const LocationDetails = () => {
         <option value="">Select a ticket</option>
         {tickets.map(ticket => (
           <option key={ticket.id} value={ticket.id}>
-            {`Ticket ID: ${ticket.id}, Price: ${ticket.price}, Means: ${ticket.means}, Seat No: ${ticket.seat_no},Location ID: ${ticket.location_id}`}
+            {`Ticket ID: ${ticket.id}, Price: ${ticket.price}, Means: ${ticket.means}, Seat No: ${ticket.seat_no}, Location ID: ${ticket.location_id}`}
           </option>
         ))}
       </select>
@@ -109,10 +100,9 @@ const LocationDetails = () => {
 
       <h2>Reviews</h2>
       {reviews.length > 0 ? (
-        <ul>
+        <ul className="review-list">
           {reviews.map(review => (
             <li key={review.id}>
-              <h3>username: {review.username}</h3>
               <p>Rating: {review.rating}</p>
               <p>{review.comment}</p>
             </li>

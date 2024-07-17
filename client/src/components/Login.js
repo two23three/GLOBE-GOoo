@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import './signup.css';
 
 const Login = ({ onLogin }) => {
   const initialValues = {
@@ -34,7 +35,7 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Login</h2>
       <Formik
         initialValues={initialValues}
