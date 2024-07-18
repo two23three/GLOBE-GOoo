@@ -6,6 +6,7 @@ from flask_restful import Api, Resource
 from auth import auth_bp,bcrypt, jwt
 from administrator import administrator_bp
 from traveler import traveler_bp
+from flask_cors import CORS
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get("DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
@@ -20,7 +21,7 @@ app.json.compact = False
 app.register_blueprint(auth_bp)
 app.register_blueprint(administrator_bp)
 app.register_blueprint(traveler_bp)
-
+CORS(app)
 migrate = Migrate(app, db)
 
 db.init_app(app)
