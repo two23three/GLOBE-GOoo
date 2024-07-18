@@ -44,7 +44,7 @@ This basic solution prioritizes ease of use and core functionalities. You can ex
 
 
 ## Project Overview
-Traveler's Haven is a comprehensive travel planning web application designed to enhance the travel experience by offering features such as destination browsing, user reviews, travel journals, personalized itineraries, and ticket purchasing. The application consists of a Flask-based API backend and a React-based frontend, ensuring seamless interaction and a dynamic user experience.
+GlobeGo is a comprehensive travel planning web application designed to streamline the process of organizing and enjoying trips. Users can browse destinations, view detailed information, and create personalized travel itineraries. Registered users can create accounts, plan trips, and share their experiences through travel journals and reviews.
 
 # Features
 - Destination Browsing: Explore various travel destinations with detailed information.
@@ -94,7 +94,7 @@ your project.
 1. Clone the repository:
 
 ```
-git clone <https://github.com/treyjeyoghera/group-phase-4>
+git clone <https://github.com/treyjeyoghera/GLOBE-GO>
 ```
 
 2. Create a virtual environment and activate it:
