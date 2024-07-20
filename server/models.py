@@ -54,7 +54,16 @@ class Ticket(db.Model, SerializerMixin):
     
     user = db.relationship('User', back_populates='tickets')
     location = db.relationship('Location', back_populates='tickets')
-
+  
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'location_id': self.location_id,
+            'price': self.price,
+            'means': self.means,
+            'seat_no': self.seat_no
+        }
 # Define the Review model
 class Review(db.Model, SerializerMixin):
     __tablename__ = 'reviews'

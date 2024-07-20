@@ -135,3 +135,15 @@ class PatchUserReview(Resource):
         return {"message": "Review updated successfully"}, 200
 
 traveler_api.add_resource(PatchUserReview, '/user_reviews/<int:review_id>')
+
+class GetUserTickets(Resource):
+    @jwt_required()
+    def get(self):
+        user_id = get_jwt_identity()
+        user = User.query.get(user_id)
+        if not user:
+            return {"message": "User not found"}, 404
+        tickets = Ticket.query.filter_by(user_id=user_id).all()
+        return [ticket.to_dict() for ticket in tickets], 
+
+traveler_api.add_resource(GetUserTickets, '/user_tickets')

@@ -1,8 +1,10 @@
-POST  http://127.0.0.1:5555/administrator/add_location
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMTA0Njg1NCwianRpIjoiNTJkMGQ5OGQtZTZjZS00ODVjLTlmMDMtNjIwNGEzMWM0NmZiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzIxMDQ2ODU0LCJjc3JmIjoiYzNiYWUyZTktMjUxZS00OGRlLWIzNTEtMzgxZWE3MzFiZGM1IiwiZXhwIjoxNzIxMDQ3NzU0fQ.j33vmYqtxhSiKa_ejMGu_AS7Y3YKygt9XfNcmrDneHU
+POST  http://127.0.0.1:5000/administrator/add_ticket
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMTMwMjMyMCwianRpIjoiZGVlMWNkZmQtNDFlMS00MGI3LTg2YTQtY2Y5OGY2MWQxZmQwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzIxMzAyMzIwLCJjc3JmIjoiNmU2M2VkMjEtMDUzNS00N2ZhLWFmNzQtMWQ1MTI3YmY1YWI5IiwiZXhwIjoxNzIxMzAzMjIwfQ.Bx2KU3Q7SqiN6Z3hOSDQVRoLF_tUqDWi1jWClflGIXA
 Content-Type: application/json
+
 {
-        "name": "Oslo",
-        "description": "Oslo, Norway, is known for its green spaces, museums, and waterfront.",
-        "image_url": "https://st.depositphotos.com/1408246/2789/i/380/depositphotos_27891751-stock-photo-oslo-cityscape.jpg"
-    }
+    "location_id":"2",
+    "price":100,
+    "means":"air",
+    "seat_no":4
+}
