@@ -1,9 +1,9 @@
 POST  http://127.0.0.1:5000/administrator/add_ticket
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMTMwMjMyMCwianRpIjoiZGVlMWNkZmQtNDFlMS00MGI3LTg2YTQtY2Y5OGY2MWQxZmQwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NCwibmJmIjoxNzIxMzAyMzIwLCJjc3JmIjoiNmU2M2VkMjEtMDUzNS00N2ZhLWFmNzQtMWQ1MTI3YmY1YWI5IiwiZXhwIjoxNzIxMzAzMjIwfQ.Bx2KU3Q7SqiN6Z3hOSDQVRoLF_tUqDWi1jWClflGIXA
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMTYzMTg1NywianRpIjoiZmQwYTExYjEtMjExZC00YWVmLTgwMDItZmRhOGYzZTVjNzYyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6OCwibmJmIjoxNzIxNjMxODU3LCJjc3JmIjoiNjg1YjkyMGYtZDk0Zi00MTIxLTkxYTAtNjg2YjY3NjlhMDcxIiwiZXhwIjoxNzIxNjMyNzU3fQ.8z4lVy4-iyWK54i_OiaRr04sMtT9YpysbTKK53a_JSk
 Content-Type: application/json
 
 {
-    "location_id":"2",
+    "location_id":"5",
     "price":100,
     "means":"air",
     "seat_no":4

@@ -2,7 +2,7 @@ post http://127.0.0.1:5000/auth/login
 Content-Type: application/json
 
 {
-"username":"Riggy g",
-"email":"Riggy@example.com",
-"password":"12345678"
+
+"email":"tulleyteyez4@gmail.com",
+"password":"0726004496"
 }
